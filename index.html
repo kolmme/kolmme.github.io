@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orbyte</title>
+<meta name="description" content="Orbyte: asistente personal privado de estudio y organización.">
+<style>
+  :root { --fondo: #0b0a1a; --texto: #ece8f7; --suave: #a59fc0; --marca: #8b6cf0; --linea: rgba(255,255,255,.1); }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--texto); line-height: 1.6;
+         background: radial-gradient(1200px 600px at 80% -10%, rgba(139,108,240,.25), transparent 60%), var(--fondo); }
+  main { max-width: 720px; margin: 0 auto; padding: 72px 20px; }
+  .planeta { width: 64px; height: 64px; border-radius: 50%; margin-bottom: 24px;
+             background: radial-gradient(circle at 30% 30%, #c4b2ff, var(--marca) 45%, #2b1f5c 80%); box-shadow: 0 0 40px rgba(139,108,240,.5); }
+  h1 { font-size: 2.4rem; margin: 0 0 8px; letter-spacing: -.02em; }
+  p { color: var(--suave); }
+  .tarjeta { border: 1px solid var(--linea); border-radius: 16px; padding: 20px 22px; margin: 28px 0; background: rgba(255,255,255,.03); }
+  a { color: #c4b2ff; }
+  footer { margin-top: 48px; font-size: .85rem; color: var(--suave); border-top: 1px solid var(--linea); padding-top: 16px; }
+</style>
+</head>
+<body>
+<main>
+  <div class="planeta" aria-hidden="true"></div>
+  <h1>Orbyte</h1>
+  <p>Un asistente personal de estudio y organización, hecho como proyecto propio de aprendizaje.</p>
+  <div class="tarjeta">
+    <p style="margin-top:0"><b style="color:var(--texto)">Uso privado.</b> Orbyte no es un servicio público: funciona en el ordenador de su autor
+      y solo se conecta a las cuentas de su propio autor (por ejemplo, su calendario y su correo) para ayudarle a organizar su día.</p>
+    <p style="margin-bottom:0">No ofrece registro, no tiene usuarios externos y no vende ni comparte datos con nadie.</p>
+  </div>
+  <p><a href="privacidad.html">Política de privacidad</a></p>
+  <footer>Orbyte · proyecto personal · <a href="https://github.com/kolmme">github.com/kolmme</a></footer>
+</main>
+</body>
+</html>
