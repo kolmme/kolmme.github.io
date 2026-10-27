@@ -39,7 +39,7 @@ body.cursor .anillo{opacity:1}
 .lbl{margin:0 0 4px;font:500 13px 'Geist Mono',monospace;letter-spacing:.14em;color:var(--violeta)}
 video{display:block}
 
-@media (max-width:620px){.barra .contenedor{gap:16px}.nav{font-size:14px}.barra .marca{display:none}}
+@media (max-width:620px){.barra .contenedor{gap:16px;justify-content:flex-end}.nav{font-size:14px}.barra .marca{display:none}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .revela{opacity:1;transform:none;transition:none}.chip,.boton,.anillo,.nav:after{transition:none}}
 
 /* ---------- pulido fino ---------- */
