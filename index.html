@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Juan Jose Colmenares — Portfolio</title>
+<meta name="description" content="Software Engineering student at Gisma University of Applied Sciences in Berlin. Creator of Orbyte, a personal AI assistant built in Python with the Claude API.">
+<meta name="theme-color" content="#08080C">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://kolmme.github.io/">
+<!-- vista previa al compartir el enlace (WhatsApp, LinkedIn, X…) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kolmme.github.io/">
+<meta property="og:title" content="Juan Jose Colmenares — Software Engineering student">
+<meta property="og:description" content="Student at Gisma University in Berlin. Creator of Orbyte, my own AI assistant built in Python with the Claude API.">
+<meta property="og:image" content="https://kolmme.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="comun.css">
+<style>
+/* inicio */
+.inicio{position:relative;min-height:860px}
+.inicio canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.inicio .capa{position:relative;z-index:1}
+.hero{display:flex;flex-wrap:wrap;gap:56px;align-items:center;padding-top:170px;padding-bottom:110px}
+.hero .texto{flex:999 1 560px;min-width:0;display:flex;flex-direction:column;gap:22px}
+.roles{position:relative;height:26px;font:500 15px 'Geist Mono',monospace;color:var(--celeste)}
+.roles span{position:absolute;left:0;top:0;white-space:nowrap;opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s}
+.roles span.ver{opacity:1;transform:none}
+h1{margin:0;font-size:clamp(48px,7.5vw,92px);line-height:.98;font-weight:600;letter-spacing:-.045em;white-space:pre-line;min-height:1.96em}
+.intro{margin:0;max-width:580px;font-size:19px;color:var(--suave)}
+.botones{display:flex;flex-wrap:wrap;gap:14px;margin-top:6px}
+.foto{flex:1 1 300px;display:grid;place-items:center}
+.foto .marco{position:relative;width:340px;max-width:78vw;aspect-ratio:1}
+.orbita{position:absolute;inset:0;border-radius:50%;border:1px dashed rgba(167,139,250,.55);animation:gira 14s linear infinite}
+.orbita2{position:absolute;inset:22px;border-radius:50%;border:1px solid rgba(56,189,248,.25);animation:gira 22s linear infinite reverse}
+.orbita i,.orbita2 i{position:absolute;border-radius:50%}
+.orbita i{top:-5px;left:calc(50% - 5px);width:10px;height:10px;background:var(--celeste);box-shadow:0 0 14px var(--celeste)}
+.orbita2 i{bottom:-4px;left:calc(50% - 4px);width:8px;height:8px;background:var(--violeta);box-shadow:0 0 12px var(--violeta)}
+.foto img{position:absolute;inset:46px;width:calc(100% - 92px);height:calc(100% - 92px);border-radius:50%;object-fit:cover;box-shadow:0 0 60px rgba(56,189,248,.25)}
+
+/* proyectos: carrusel */
+.proyectos{position:relative;z-index:1;padding:40px 0 80px;overflow:hidden}   /* las tarjetas de los lados no deben sacar la página de ancho */
+.cabeza{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:16px}
+h2{margin:0;font-size:48px;font-weight:600;letter-spacing:-.04em}
+.controles{display:flex;align-items:center;gap:12px}
+.contador{font:500 14px 'Geist Mono',monospace;color:var(--suave);min-width:52px}
+.flecha{width:48px;height:48px;border-radius:50%;border:1px solid var(--borde2);background:transparent;color:var(--texto);cursor:pointer;display:grid;place-items:center;transition:transform .2s,background-color .2s,border-color .2s}
+.flecha:hover{transform:scale(1.08);background:rgba(56,189,248,.14);border-color:var(--celeste)}
+.pista{position:relative;height:620px;margin-top:36px;touch-action:pan-y}
+.slide{position:absolute;left:50%;top:0;width:min(760px,86vw);background:var(--tarjeta);border:1px solid var(--borde);border-radius:24px;padding:18px;transition:transform .65s cubic-bezier(.2,.8,.2,1),opacity .65s,border-color .4s,box-shadow .4s}
+.slide.centro{border-color:rgba(56,189,248,.45);box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 40px rgba(56,189,248,.15)}
+.portada{aspect-ratio:2/1;border-radius:16px;overflow:hidden;display:grid;place-items:center}
+.portada video{width:100%;height:100%;object-fit:cover}
+.slide .info{padding:20px 8px 6px;display:flex;flex-direction:column;gap:8px}
+.etiqueta{margin:0;font:500 12px 'Geist Mono',monospace;letter-spacing:.14em;color:var(--celeste)}
+.slide h3{margin:0;font-size:28px;font-weight:600;letter-spacing:-.03em}
+.slide p.txt{margin:0;color:var(--suave)}
+.caso{align-self:flex-start;margin-top:4px;font-weight:600;color:var(--celeste);text-decoration:none}
+.caso:hover{text-decoration:underline}
+.puntos{display:flex;justify-content:center;gap:2px;margin-top:8px}
+/* el botón mide 24 px (fácil de tocar con el dedo); el puntito que se ve sigue siendo pequeño */
+.puntos button{height:24px;min-width:24px;border:0;padding:0 7px;background:none;cursor:pointer;display:grid;place-items:center}
+.puntos button:before{content:'';display:block;height:10px;width:10px;border-radius:999px;background:#3A3A48;transition:width .3s,background-color .3s}
+.puntos button.on:before{width:30px;background:var(--celeste)}
+
+/* cinta de herramientas */
+.cintabox{position:relative;z-index:1;border-top:1px solid #1C1C26;border-bottom:1px solid #1C1C26;padding:26px 0;overflow:hidden}
+.cinta{display:flex;width:max-content;animation:desliza 60s linear infinite}
+.cinta:hover{animation-play-state:paused}
+.cinta .chip{margin-right:14px;border-radius:12px;padding:10px 18px;font-size:16px;color:var(--suave2);white-space:nowrap}
+
+/* sobre mí */
+.sobre{position:relative;z-index:1;padding-top:96px;padding-bottom:96px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:48px}
+.sobre p{margin:0;color:var(--suave2)}
+.col{display:flex;flex-direction:column;gap:16px}
+.fila{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;transition:background-color .2s,transform .2s}
+.fila:hover{background:rgba(167,139,250,.12);transform:translateX(6px)}
+.fila.estudio{align-items:flex-start;gap:14px}.fila.estudio svg{flex:none;margin-top:5px}
+.fila small{color:var(--suave);font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+
+/* ahora */
+.ahora{position:relative;z-index:1;padding-top:30px;padding-bottom:80px;display:flex;flex-direction:column;gap:24px}
+.ahora-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.ahora-item{display:flex;gap:16px;align-items:flex-start;background:var(--tarjeta);border:1px solid var(--borde);border-radius:18px;padding:22px;transition:border-color .25s,transform .25s}
+.ahora-item:hover{border-color:rgba(56,189,248,.5);transform:translateY(-3px)}
+.ahora-item b{display:block;font-size:19px;font-weight:600;letter-spacing:-.02em}.ahora-item small{display:block;margin-top:4px;color:var(--suave);font-size:15px}
+.pulso{flex:none;position:relative;width:12px;height:12px;margin-top:7px;border-radius:50%;background:var(--celeste)}
+.pulso:after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--celeste);animation:pulso 2s ease-out infinite}
+@keyframes pulso{to{transform:scale(2.6);opacity:0}}
+@media (prefers-reduced-motion:reduce){.pulso:after{animation:none}}
+
+/* contacto */
+.contacto{position:relative;z-index:1;border-top:1px solid #1C1C26}
+.contacto .contenedor{padding-top:90px;padding-bottom:90px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:24px}
+.contacto h2{font-size:clamp(44px,6vw,64px);line-height:1}
+.contacto em{font-family:'Instrument Serif',serif;font-weight:400;letter-spacing:-.01em}
+.firma{margin:18px 0 0;font-size:13px;color:var(--suave)}
+
+@keyframes gira{to{transform:rotate(360deg)}}
+@keyframes desliza{to{transform:translateX(-50%)}}
+@media (max-width:700px){.inicio{min-height:0}.hero{padding-top:110px;padding-bottom:70px}.pista{height:580px}h2{font-size:38px}}
+@media (prefers-reduced-motion:reduce){.orbita,.orbita2,.cinta{animation:none}.slide,.roles span,.fila{transition:none}}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Juan Jose Colmenares","url":"https://kolmme.github.io/","image":"https://kolmme.github.io/foto.jpg",
+"jobTitle":"Software Engineering student","address":{"@type":"PostalAddress","addressLocality":"Berlin","addressCountry":"DE"},
+"alumniOf":{"@type":"CollegeOrUniversity","name":"Gisma University of Applied Sciences"},
+"knowsLanguage":["es","en","de"],"knowsAbout":["Python","Flask","Artificial Intelligence","Git","LaTeX","Linux"],
+"sameAs":["https://github.com/kolmme","https://www.linkedin.com/in/juan-colmenares-b959063a8/"]}
+</script>
+<script data-goatcounter="https://kolmme.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<a class="saltar" href="#projects">Skip to projects</a>
+<div class="luz" aria-hidden="true"></div>
+<div class="anillo" aria-hidden="true"></div>
+
+<nav class="barra" aria-label="Main">
+  <div class="contenedor">
+    <a class="marca" href="#top">Juan Jose Colmenares</a>
+    <a class="nav" href="#projects">Projects</a>
+    <a class="nav" href="#now">Now</a>
+    <a class="nav" href="#about">About</a>
+    <a class="nav" href="#contact">Contact</a>
+  </div>
+</nav>
+
+<main>
+<section class="inicio" id="top">
+  <canvas id="cielo" aria-hidden="true"></canvas>
+  <div class="capa">
+    <div class="contenedor hero">
+      <div class="texto">
+        <div class="roles" aria-hidden="true">
+          <span class="ver">&gt; Software Engineering student</span>
+          <span>&gt; Building my own AI: Orbyte</span>
+          <span>&gt; Based in Berlin, Germany</span>
+        </div>
+        <h1 id="nombre" aria-label="Juan Jose Colmenares">Juan Jose
+Colmenares</h1>
+        <p class="intro">Software Engineering student at Gisma University of Applied Sciences in Berlin, Germany. Currently looking to maximise my AI development skills and programming skills.</p>
+        <div class="botones">
+          <a class="boton lleno iman" href="https://mail.google.com/mail/?view=cm&amp;to=juanjcol66@gmail.com" target="_blank" rel="noopener">Email me</a>
+          <a class="boton borde iman" href="https://github.com/kolmme" target="_blank" rel="noopener">GitHub</a>
+          <a class="boton borde iman" href="https://www.linkedin.com/in/juan-colmenares-b959063a8/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <div class="foto">
+        <div class="marco">
+          <div class="orbita" aria-hidden="true"><i></i></div>
+          <div class="orbita2" aria-hidden="true"><i></i></div>
+          <img src="foto.jpg" alt="Portrait of Juan Jose Colmenares" width="248" height="248">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="proyectos" id="projects">
+  <div class="contenedor cabeza revela">
+    <h2>Projects</h2>
+    <div class="controles">
+      <span class="contador" id="contador" aria-live="polite">1 / 5</span>
+      <button class="flecha" type="button" id="antes" aria-label="Previous project"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+      <button class="flecha" type="button" id="despues" aria-label="Next project"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+    </div>
+  </div>
+  <div class="pista revela d1" id="pista">
+    <article class="slide">
+      <div class="portada" style="background:#05030B"><video autoplay muted loop playsinline preload="metadata" poster="orbyte.jpg" aria-label="Orbyte in action: the assistant listening, answering and showing the day"><source src="orbyte.mp4" type="video/mp4"></video></div>
+      <div class="info"><p class="etiqueta">FEATURED · 2026</p><h3>Orbyte</h3><p class="txt">My own AI, built in Python with the Claude API. It talks in Spanish by voice, helps me study maths, code, and German, remembers our conversations, and connects to my calendar, Gmail, Telegram, and WhatsApp — all running on my own PC.</p><a class="caso" href="orbyte.html">Read the case study →</a></div>
+    </article>
+    <article class="slide">
+      <div class="portada" style="background:#0D2A18"><svg width="320" height="190" viewBox="0 0 320 190" role="img" aria-label="Football pitch"><rect x="4" y="4" width="312" height="182" rx="6" fill="#14532D" stroke="#BBF7D0" stroke-opacity="0.7" stroke-width="2"/><line x1="160" y1="4" x2="160" y2="186" stroke="#BBF7D0" stroke-opacity="0.7" stroke-width="2"/><circle cx="160" cy="95" r="30" fill="none" stroke="#BBF7D0" stroke-opacity="0.7" stroke-width="2"/><rect x="4" y="55" width="40" height="80" fill="none" stroke="#BBF7D0" stroke-opacity="0.7" stroke-width="2"/><rect x="276" y="55" width="40" height="80" fill="none" stroke="#BBF7D0" stroke-opacity="0.7" stroke-width="2"/><circle cx="198" cy="78" r="8" fill="#FFFFFF"/><path d="M60 140 L118 112 L176 120" stroke="#FBBF24" stroke-width="2.5" stroke-dasharray="6 6" fill="none"/></svg></div>
+      <div class="info"><p class="etiqueta" style="color:var(--violeta)">● IN PROGRESS</p><h3>Modo Carrera</h3></div>
+    </article>
+    <article class="slide">
+      <div class="portada" style="background:#1A1530"><video autoplay muted loop playsinline preload="metadata" poster="latex.jpg" aria-label="LaTeX code being typed and turning into a CV page"><source src="latex.mp4" type="video/mp4"></video></div>
+      <div class="info"><p class="etiqueta">2026 · LATEX</p><h3>CV — LaTeX</h3><p class="txt">Developed a professional curriculum vitae by writing LaTeX code.</p></div>
+    </article>
+    <article class="slide">
+      <div class="portada" style="background:#0B1626"><video autoplay muted loop playsinline preload="metadata" poster="web.jpg" aria-label="Scrolling through this portfolio website with the mouse"><source src="web.mp4" type="video/mp4"></video></div>
+      <div class="info"><p class="etiqueta">2026 · WEBSITE</p><h3>Personal Portfolio Website</h3><p class="txt">Developed a personal website to showcase academic achievements, skills, and projects.</p><a class="caso" href="https://github.com/kolmme/kolmme.github.io" target="_blank" rel="noopener">View code →</a></div>
+    </article>
+    <article class="slide">
+      <div class="portada" style="background:#0F2218"><svg width="170" height="170" viewBox="0 0 170 170" role="img" aria-label="Leaf"><circle cx="85" cy="85" r="78" fill="#14301F"/><path d="M50 120c0-46 30-76 76-80-2 48-30 78-76 80z" fill="#4ADE80"/><path d="M50 120c18-22 38-40 62-56" stroke="#14301F" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="60" cy="58" r="10" fill="#FBBF24"/></svg></div>
+      <div class="info"><p class="etiqueta">2025 · CLIENT WORK</p><h3>Nutrition Brand Website</h3><p class="txt">Helped with the design, content organization, and development of a website for a nutrition brand.</p></div>
+    </article>
+  </div>
+  <div class="puntos" id="puntos"></div>
+</section>
+
+<section class="contenedor ahora" id="now">
+  <div class="revela" style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px">
+    <h2>Now</h2><p class="lbl" style="margin:0">UPDATED OCTOBER 2026</p>
+  </div>
+  <div class="ahora-grid revela d1">
+    <div class="ahora-item"><span class="pulso" aria-hidden="true"></span><div><b>Improving and optimising Orbyte</b><small>Making my AI assistant faster, smarter and more reliable</small></div></div>
+    <div class="ahora-item"><span class="pulso" aria-hidden="true"></span><div><b>Developing Modo Carrera</b><small>A football manager game for the browser</small></div></div>
+  </div>
+</section>
+
+<section class="cintabox" aria-label="Tools: Flask, Git, GitHub, LaTeX, Visual Studio Code, Linux">
+  <div class="cinta" id="cinta" aria-hidden="true"></div>
+</section>
+
+<section class="contenedor sobre" id="about">
+  <div class="col revela">
+    <h2>About me</h2>
+    <p>I'm a Software Engineering student at Gisma University of Applied Sciences with a strong interest in Artificial Intelligence and Software Development.</p>
+    <p>Currently focused on improving my programming skills and strengthening my knowledge of algorithms and systems. I'm deeply interested in AI and aim to pursue a career in developing AI solutions.</p>
+    <p>As a global student, I have studied in Colombia, the United States, and Germany, gaining adaptability, intercultural communication skills, and a broad international perspective.</p>
+    <div class="chips"><span class="chip">Teamwork</span><span class="chip">Global mindset</span><span class="chip">Self-learning</span></div>
+  </div>
+  <div class="col revela d2" style="gap:28px">
+    <div>
+      <h3 class="lbl">LANGUAGES</h3>
+      <div class="fila"><svg width="24" height="16" viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="16" fill="#AA151B"/><rect y="4" width="24" height="8" fill="#F1BF00"/></svg><span style="flex:1">Spanish</span><small>Native</small></div>
+      <div class="fila"><span style="display:flex;gap:4px"><svg width="24" height="16" viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="16" fill="#B22234"/><rect y="1.23" width="24" height="1.23" fill="#fff"/><rect y="3.69" width="24" height="1.23" fill="#fff"/><rect y="6.15" width="24" height="1.23" fill="#fff"/><rect y="8.61" width="24" height="1.23" fill="#fff"/><rect y="11.07" width="24" height="1.23" fill="#fff"/><rect y="13.53" width="24" height="1.23" fill="#fff"/><rect width="10" height="8.6" fill="#3C3B6E"/></svg><svg width="24" height="16" viewBox="0 0 60 40" aria-hidden="true"><rect width="60" height="40" fill="#012169"/><path d="M0 0L60 40M60 0L0 40" stroke="#fff" stroke-width="8"/><path d="M0 0L60 40M60 0L0 40" stroke="#C8102E" stroke-width="3"/><path d="M30 0V40M0 20H60" stroke="#fff" stroke-width="12"/><path d="M30 0V40M0 20H60" stroke="#C8102E" stroke-width="7"/></svg></span><span style="flex:1">English</span><small>C1</small></div>
+      <div class="fila"><svg width="24" height="16" viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="5.34" fill="#000"/><rect y="5.33" width="24" height="5.34" fill="#D00"/><rect y="10.66" width="24" height="5.34" fill="#FFCE00"/></svg><span style="flex:1">German</span><small>B1</small></div>
+    </div>
+    <div>
+      <h3 class="lbl">EDUCATION</h3>
+      <div class="fila estudio"><svg width="24" height="16" viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="5.34" fill="#000"/><rect y="5.33" width="24" height="5.34" fill="#D00"/><rect y="10.66" width="24" height="5.34" fill="#FFCE00"/></svg><div><strong>BSc Software Engineering with Foundation</strong><br><small>Gisma University of Applied Sciences, Berlin · 2025 — 2029</small></div></div>
+      <div class="fila estudio"><svg width="24" height="16" viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="8" fill="#FCD116"/><rect y="8" width="24" height="4" fill="#003893"/><rect y="12" width="24" height="4" fill="#CE1126"/></svg><div><strong>Foundations of Systems Engineering</strong><br><small>Escuela Colombiana de Ingeniería Julio Garavito, Bogotá · 2025</small></div></div>
+      <div class="fila estudio"><svg width="24" height="16" viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="8" fill="#FCD116"/><rect y="8" width="24" height="4" fill="#003893"/><rect y="12" width="24" height="4" fill="#CE1126"/></svg><div><strong>High School Diploma</strong><br><small>Saint Thomas School, Bogotá · 2021 — 2024</small></div></div>
+      <div class="fila estudio"><svg width="24" height="16" viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="16" fill="#B22234"/><rect y="1.23" width="24" height="1.23" fill="#fff"/><rect y="3.69" width="24" height="1.23" fill="#fff"/><rect y="6.15" width="24" height="1.23" fill="#fff"/><rect y="8.61" width="24" height="1.23" fill="#fff"/><rect y="11.07" width="24" height="1.23" fill="#fff"/><rect y="13.53" width="24" height="1.23" fill="#fff"/><rect width="10" height="8.6" fill="#3C3B6E"/></svg><div><strong>Middle School</strong><br><small>Kilmer Middle School, Vienna, Virginia · 2019 — 2020</small></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="contacto" id="contact">
+  <div class="contenedor revela">
+    <h2>Let's <em>connect</em><span style="color:var(--celeste)">.</span></h2>
+    <div class="botones" style="justify-content:center">
+      <a class="boton lleno iman" href="https://mail.google.com/mail/?view=cm&amp;to=juanjcol66@gmail.com" target="_blank" rel="noopener">juanjcol66@gmail.com</a>
+      <button type="button" class="copiar" data-copiar-correo aria-label="Copy email address" title="Copy email"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>
+      <a class="boton borde iman" href="https://github.com/kolmme" target="_blank" rel="noopener">GitHub</a>
+      <a class="boton borde iman" href="https://www.linkedin.com/in/juan-colmenares-b959063a8/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="pie">
+  <div class="contenedor">
+    <span>Designed &amp; built by Juan Jose Colmenares with HTML, CSS &amp; JavaScript · <a href="https://github.com/kolmme/kolmme.github.io" target="_blank" rel="noopener">View source</a></span>
+    <span class="vivo">Berlin · <time id="hora">--:--</time></span>
+  </div>
+</footer>
+
+<script src="comun.js"></script>
+<script src="extras.js"></script>
+<script>
+
+(() => {
+  'use strict';
+  const quieto = Portafolio.quieto;
+
+  /* el cielo: estrellas que se unen entre ellas y con tu cursor */
+  const c = document.getElementById('cielo'), g = c.getContext('2d'), caja = c.parentElement;
+  let W = 0, H = 0, P = [], raton = { x: -9999, y: -9999 }, visible = true;
+  function medir() {
+    const r = caja.getBoundingClientRect(), d = Math.min(devicePixelRatio || 1, 2);
+    W = r.width; H = r.height; c.width = Math.round(W * d); c.height = Math.round(H * d); g.setTransform(d, 0, 0, d, 0, 0);
+    const n = Math.round(Math.min(95, W * H / 12000));
+    P = Array.from({ length: n }, () => ({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35 }));
+    if (quieto) dibujar();
+  }
+  function dibujar() {
+    g.clearRect(0, 0, W, H);
+    for (let i = 0; i < P.length; i++) {
+      const a = P[i];
+      if (!quieto) { a.x += a.vx; a.y += a.vy; if (a.x < 0 || a.x > W) a.vx *= -1; if (a.y < 0 || a.y > H) a.vy *= -1; }
+      for (let j = i + 1; j < P.length; j++) {
+        const b = P[j], d = Math.hypot(a.x - b.x, a.y - b.y);
+        if (d < 120) { g.strokeStyle = `rgba(167,139,250,${(.32 * (1 - d / 120)).toFixed(3)})`; g.lineWidth = 1; g.beginPath(); g.moveTo(a.x, a.y); g.lineTo(b.x, b.y); g.stroke(); }
+      }
+      const dm = Math.hypot(a.x - raton.x, a.y - raton.y);
+      if (dm < 190) { g.strokeStyle = `rgba(56,189,248,${(.65 * (1 - dm / 190)).toFixed(3)})`; g.beginPath(); g.moveTo(a.x, a.y); g.lineTo(raton.x, raton.y); g.stroke(); }
+    }
+    g.fillStyle = 'rgba(237,237,242,.85)';
+    for (const p of P) { g.beginPath(); g.arc(p.x, p.y, 1.6, 0, 6.283); g.fill(); }
+  }
+  caja.addEventListener('pointermove', (e) => { const r = caja.getBoundingClientRect(); raton = { x: e.clientX - r.left, y: e.clientY - r.top }; });
+  caja.addEventListener('pointerleave', () => { raton = { x: -9999, y: -9999 }; });
+  new IntersectionObserver((es) => { visible = es[0].isIntersecting; }).observe(caja);   // fuera de la vista no dibuja
+  new ResizeObserver(medir).observe(caja);
+  (function paso() { if (visible && !document.hidden) dibujar(); if (!quieto) requestAnimationFrame(paso); })();
+
+  /* el nombre se «descifra» */
+  const h1 = document.getElementById('nombre'), NOMBRE = 'Juan Jose\nColmenares', LETRAS = 'ABCDEFGHJKLMNOPQRSTUVWXYZ#%&*01';
+  if (!quieto) {
+    let k = 0, tick = 0;
+    const t = setInterval(() => {
+      k++; tick++;
+      h1.textContent = NOMBRE.split('').map((ch, i) => (i < k || ch === ' ' || ch === '\n') ? ch : LETRAS[(i * 7 + tick * 13) % LETRAS.length]).join('');
+      if (k > NOMBRE.length) { clearInterval(t); h1.textContent = NOMBRE; }
+    }, 55);
+  }
+
+  /* la frase que rota */
+  const roles = document.querySelectorAll('.roles span'); let rol = 0;
+  if (!quieto) setInterval(() => { roles[rol].classList.remove('ver'); rol = (rol + 1) % roles.length; roles[rol].classList.add('ver'); }, 2600);
+
+  /* carrusel */
+  const slides = [...document.querySelectorAll('.slide')], n = slides.length, pista = document.getElementById('pista');
+  const puntos = document.getElementById('puntos'), contador = document.getElementById('contador');
+  let act = 0, pausa = false, x0 = null;
+  slides.forEach((s, i) => { const b = document.createElement('button'); b.type = 'button'; b.addEventListener('click', () => ir(i)); puntos.appendChild(b); });
+  function nombrarPuntos() {
+    [...puntos.children].forEach((b, i) => b.setAttribute('aria-label', 'Show ' + slides[i].querySelector('h3').textContent));
+  }
+  function pintar() {
+    slides.forEach((s, i) => {
+      let off = i - act; if (off > n / 2) off -= n; if (off < -n / 2) off += n;
+      const centro = off === 0, cerca = Math.abs(off) === 1;
+      s.style.transform = `translateX(calc(-50% + ${off * 66}%)) scale(${centro ? 1 : .84})`;
+      s.style.opacity = centro ? 1 : cerca ? .35 : 0;
+      s.style.zIndex = centro ? 3 : cerca ? 2 : 1;
+      s.style.pointerEvents = centro ? 'auto' : 'none';
+      s.classList.toggle('centro', centro);
+      s.setAttribute('aria-hidden', String(!centro));
+      s.querySelectorAll('a').forEach((a) => (centro ? a.removeAttribute('tabindex') : a.setAttribute('tabindex', '-1')));
+    });
+    [...puntos.children].forEach((b, i) => b.classList.toggle('on', i === act));
+    contador.textContent = (act + 1) + ' / ' + n;
+  }
+  function ir(i) { act = (i + n) % n; pintar(); }
+  document.getElementById('antes').addEventListener('click', () => ir(act - 1));
+  document.getElementById('despues').addEventListener('click', () => ir(act + 1));
+  pista.addEventListener('mouseenter', () => { pausa = true; });
+  pista.addEventListener('mouseleave', () => { pausa = false; });
+  pista.addEventListener('focusin', () => { pausa = true; });
+  pista.addEventListener('focusout', () => { pausa = false; });
+  pista.addEventListener('pointerdown', (e) => { x0 = e.clientX; });
+  pista.addEventListener('pointerup', (e) => { if (x0 == null) return; const d = e.clientX - x0; x0 = null; if (Math.abs(d) > 50) ir(act + (d < 0 ? 1 : -1)); });
+  if (!quieto) setInterval(() => { if (!pausa && !document.hidden) ir(act + 1); }, 5000);
+  nombrarPuntos(); pintar();
+
+  /* cinta de herramientas: dos mitades iguales, cada una más ancha que la pantalla */
+  const HERR = ['Flask', 'Git', 'GitHub', 'LaTeX', 'Visual Studio Code', 'Linux'], cinta = document.getElementById('cinta');
+  for (let k = 0; k < 12; k++) HERR.forEach((t) => { const s = document.createElement('span'); s.className = 'chip'; s.textContent = t; cinta.appendChild(s); });
+})();
+</script>
+</body>
+</html>

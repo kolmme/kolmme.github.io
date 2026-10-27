@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orbyte — case study · Juan Jose Colmenares</title>
+<meta name="description" content="How I built Orbyte, a personal AI assistant that listens, talks and helps me study, running on my own PC with Python, Flask and the Claude API.">
+<meta name="theme-color" content="#08080C">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://kolmme.github.io/orbyte.html">
+<meta property="og:title" content="Orbyte — a personal AI assistant · case study">
+<meta property="og:description" content="Wake word, speech recognition on the GPU, Claude with real tools and a voice that answers sentence by sentence.">
+<meta property="og:image" content="https://kolmme.github.io/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="comun.css">
+<style>
+main{position:relative;z-index:1}
+.portada-caso{padding-top:130px;padding-bottom:40px;display:flex;flex-direction:column;gap:18px}
+.volver{font-size:15px;text-decoration:none;color:var(--suave)}
+h1{margin:0;font-size:clamp(56px,9vw,112px);line-height:.95;font-weight:600;letter-spacing:-.05em}
+h1 em{font-family:'Instrument Serif',serif;font-weight:400;letter-spacing:-.01em;color:var(--celeste)}
+.bajada{margin:0;max-width:720px;font-size:21px;color:var(--suave2)}
+.video{border-radius:22px;overflow:hidden;border:1px solid var(--borde);box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 40px rgba(56,189,248,.12)}
+.video video{width:100%;height:auto;aspect-ratio:2/1;object-fit:cover}
+.datos{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;padding:40px 0 20px}
+.dato{border-top:1px solid var(--borde);padding-top:14px}
+.dato b{display:block;font-size:15px;font-weight:600}.dato span{color:var(--suave);font-size:15px}
+.bloque{padding:70px 0;border-top:1px solid #1C1C26;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:48px}
+.bloque h2{margin:0;font-size:36px;font-weight:600;letter-spacing:-.035em;line-height:1.1}
+.bloque p{margin:0 0 14px;color:var(--suave2);font-size:17px}
+.pasos{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.paso{background:var(--tarjeta);border:1px solid var(--borde);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:8px;transition:border-color .25s,transform .25s}
+.paso:hover{border-color:rgba(56,189,248,.5);transform:translateY(-4px)}
+.paso .n{font:500 12px 'Geist Mono',monospace;color:var(--celeste);letter-spacing:.12em}
+.paso b{font-size:19px;font-weight:600;letter-spacing:-.02em}.paso span{color:var(--suave);font-size:15px}
+.lista{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+.lista li{display:flex;gap:12px;color:var(--suave2);font-size:17px}
+.lista li:before{content:'';flex:none;width:8px;height:8px;margin-top:10px;border-radius:50%;background:var(--violeta);box-shadow:0 0 10px var(--violeta)}
+.cifras{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}
+.cifra{border:1px solid var(--borde);border-radius:16px;padding:22px}
+.cifra b{display:block;font-size:42px;font-weight:600;letter-spacing:-.04em;color:var(--celeste);line-height:1.1}
+.cifra span{color:var(--suave);font-size:15px}
+.cierre{padding:80px 0 100px;border-top:1px solid #1C1C26;text-align:center;display:flex;flex-direction:column;align-items:center;gap:22px}
+.cierre h2{margin:0;font-size:clamp(36px,5vw,52px);font-weight:600;letter-spacing:-.04em}
+@media (max-width:760px){.bloque{grid-template-columns:1fr;gap:20px;padding:50px 0}}
+</style>
+<script data-goatcounter="https://kolmme.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<a class="saltar" href="#how">Skip to how it works</a>
+<div class="luz" aria-hidden="true"></div>
+<div class="anillo" aria-hidden="true"></div>
+
+<nav class="barra" aria-label="Main">
+  <div class="contenedor">
+    <a class="marca" href="./">Juan Jose Colmenares</a>
+    <a class="nav" href="#why">Why</a>
+    <a class="nav" href="#how">How it works</a>
+    <a class="nav" href="#learned">What I learned</a>
+  </div>
+</nav>
+
+<main>
+  <header class="contenedor portada-caso">
+    <a class="volver" href="./">← Back to portfolio</a>
+    <p class="lbl">CASE STUDY · PERSONAL PROJECT</p>
+    <h1>Orbyte<em>.</em></h1>
+    <p class="bajada">A personal AI assistant that lives on my own laptop. I say “Orbyte”, she listens, and she helps me organise my week, study maths and German, and control my PC — in Spanish, by voice.</p>
+    <div class="video revela"><video autoplay muted loop playsinline preload="metadata" poster="orbyte.jpg" aria-label="Orbyte in action"><source src="orbyte.mp4" type="video/mp4"></video></div>
+    <div class="datos revela d1">
+      <div class="dato"><b>Role</b><span>Solo project — idea, design and code</span></div>
+      <div class="dato"><b>Timeline</b><span>September 2026 — today</span></div>
+      <div class="dato"><b>Stack</b><span>Python · Flask · JavaScript · Claude API · Whisper · Git</span></div>
+      <div class="dato"><b>Runs on</b><span>My Windows laptop, plus my phone through a private network</span></div>
+    </div>
+  </header>
+
+  <section class="contenedor bloque" id="why">
+    <h2 class="revela">Why I built it</h2>
+    <div class="revela d1">
+      <p>I moved to Berlin to study Software Engineering, learn German, and take a maths course. My week was spread across calendars, notes, chats, and apps.</p>
+      <p>I wanted one assistant that knows my schedule and my courses, that I can simply talk to, and that I can finally build and understand myself, piece by piece.</p>
+    </div>
+  </section>
+
+  <section class="contenedor bloque" id="how">
+    <h2 class="revela">How it works</h2>
+    <div class="pasos revela d1">
+      <div class="paso"><span class="n">01</span><b>Wake word</b><span>My AI listens for “Orbyte” and can be set to react only to my voice.</span></div>
+      <div class="paso"><span class="n">02</span><b>Speech to text</b><span>Whisper runs on my laptop's graphics card and turns my voice into text in about half a second.</span></div>
+      <div class="paso"><span class="n">03</span><b>Think</b><span>Simple commands are answered instantly for free. Everything else goes to Claude, which can use real tools: calendar, Gmail, Spotify, timers and my notes.</span></div>
+      <div class="paso"><span class="n">04</span><b>Speak</b><span>She answers with a natural voice, sentence by sentence, so she starts talking before the full answer is ready. I can interrupt her anytime.</span></div>
+    </div>
+  </section>
+
+  <section class="contenedor bloque" id="features">
+    <h2 class="revela">What she can do</h2>
+    <ul class="lista revela d1">
+      <li>Read and organise my Google Calendar and Gmail</li>
+      <li>Follow my maths course week by week and check every calculation with an exact calculator</li>
+      <li>Practise German with me: word of the day, flashcards and conversation</li>
+      <li>Play music, open apps, set timers and control my PC by voice</li>
+      <li>Search my notes and documents when I ask about a specific topic</li>
+      <li>Talk to me on Telegram when I'm away from my laptop</li>
+    </ul>
+  </section>
+
+  <section class="contenedor bloque" id="learned">
+    <h2 class="revela">What I learned</h2>
+    <ul class="lista revela d1">
+      <li>Designing for voice is different: answers must be short, and the assistant must know when to stay quiet.</li>
+      <li>AI products need tests too. Writing hundreds of example phrases caught bugs before they reached me.</li>
+      <li>Building it with an AI coding assistant (Claude Code) taught me to plan, review, and test code instead of only writing it.</li>
+      <li>Costs matter: free local answers first, and the AI only when it is really needed.</li>
+    </ul>
+  </section>
+
+  <section class="contenedor cierre revela">
+    <h2>Want to know more?</h2>
+    <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center">
+      <a class="boton lleno iman" href="https://mail.google.com/mail/?view=cm&amp;to=juanjcol66@gmail.com" target="_blank" rel="noopener">Email me</a>
+      <button type="button" class="copiar" data-copiar-correo aria-label="Copy email address" title="Copy email"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>
+      <a class="boton borde iman" href="./#projects">See all projects</a>
+    </div>
+  </section>
+</main>
+<footer class="pie">
+  <div class="contenedor">
+    <span>Designed &amp; built by Juan Jose Colmenares with HTML, CSS &amp; JavaScript · <a href="https://github.com/kolmme/kolmme.github.io" target="_blank" rel="noopener">View source</a></span>
+    <span class="vivo">Berlin · <time id="hora">--:--</time></span>
+  </div>
+</footer>
+
+<script src="comun.js"></script>
+<script src="extras.js"></script>
+</body>
+</html>

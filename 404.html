@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found · Juan Jose Colmenares</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/comun.css">
+<style>
+main{position:relative;z-index:1;min-height:100vh;display:grid;place-items:center;text-align:center;padding:24px}
+.n{font:500 14px 'Geist Mono',monospace;letter-spacing:.2em;color:var(--celeste)}
+h1{margin:12px 0;font-size:clamp(44px,8vw,84px);font-weight:600;letter-spacing:-.045em;line-height:1}
+h1 em{font-family:'Instrument Serif',serif;font-weight:400}
+p{color:var(--suave);font-size:18px;max-width:480px;margin:0 auto 26px}
+.orbita{width:120px;height:120px;margin:0 auto 26px;border-radius:50%;border:1px dashed rgba(167,139,250,.6);position:relative;animation:gira 10s linear infinite}
+.orbita i{position:absolute;top:-6px;left:calc(50% - 6px);width:12px;height:12px;border-radius:50%;background:var(--celeste);box-shadow:0 0 14px var(--celeste)}
+@keyframes gira{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.orbita{animation:none}}
+</style>
+<script data-goatcounter="https://kolmme.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="luz" aria-hidden="true"></div>
+<main>
+  <div>
+    <div class="orbita" aria-hidden="true"><i></i></div>
+    <p class="n">404</p>
+    <h1>Lost in <em>space</em>.</h1>
+    <p>This page drifted out of orbit. Let's get you back to something real.</p>
+    <a class="boton lleno" href="/">Back to the portfolio</a>
+  </div>
+</main>
+<script>addEventListener('pointermove', (e) => { document.documentElement.style.setProperty('--mx', e.clientX + 'px'); document.documentElement.style.setProperty('--my', e.clientY + 'px'); });</script>
+</body>
+</html>

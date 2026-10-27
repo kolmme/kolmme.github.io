@@ -1,0 +1,86 @@
+/* Lo que comparten el portafolio y la página de Orbyte: colores, letras, menú fijo, luz del cursor, aparecer al bajar. */
+:root{--fondo:#08080C;--tarjeta:#111118;--borde:#24242E;--borde2:#2A2A36;--texto:#EDEDF2;--suave:#A1A1B5;--suave2:#C8C8D6;--celeste:#38BDF8;--violeta:#A78BFA;--mx:-800px;--my:-800px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--fondo);color:var(--texto);font:16px/1.6 Geist,system-ui,sans-serif;overflow-x:hidden}
+a{color:var(--texto)}a:hover{color:var(--celeste)}
+h1,h2,h3{font-family:Geist,system-ui,sans-serif}
+:focus-visible{outline:2px solid var(--celeste);outline-offset:3px}
+.contenedor{max-width:1200px;margin:0 auto;padding:0 24px}
+.saltar{position:absolute;left:-999px;top:8px;background:var(--celeste);color:var(--fondo);padding:8px 14px;border-radius:8px;z-index:100}
+.saltar:focus{left:16px}
+
+/* luz y anillo que siguen al cursor */
+.luz{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(650px circle at var(--mx) var(--my),rgba(56,189,248,.09),rgba(167,139,250,.05) 40%,transparent 70%)}
+.anillo{position:fixed;left:0;top:0;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;border:1.5px solid rgba(56,189,248,.8);pointer-events:none;z-index:60;transform:translate(var(--mx),var(--my));transition:transform .18s ease-out,opacity .3s;opacity:0}
+body.cursor .anillo{opacity:1}
+@media (hover:none){.anillo,.luz{display:none}}
+
+/* menú fijo: transparente arriba, con vidrio al bajar; marca la sección donde estás */
+.barra{position:fixed;top:0;left:0;right:0;z-index:40;border-bottom:1px solid transparent;transition:background-color .3s,border-color .3s,backdrop-filter .3s}
+.barra.solida{background:rgba(8,8,12,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom-color:#1C1C26}
+.barra .contenedor{display:flex;align-items:center;gap:26px;height:64px}
+.barra .marca{margin-right:auto;font:500 14px 'Geist Mono',monospace;text-decoration:none;color:var(--suave);opacity:0;transition:opacity .3s}
+.barra.solida .marca{opacity:1}
+.nav{position:relative;text-decoration:none;color:var(--suave);font-size:15px}
+.nav:after{content:'';position:absolute;left:0;right:100%;bottom:-6px;height:2px;background:var(--celeste);transition:right .25s ease}
+.nav:hover,.nav.activa{color:var(--texto)}.nav:hover:after,.nav.activa:after{right:0}
+
+/* aparecer al bajar (solo si hay JavaScript: sin él, todo se ve igual) */
+.js .revela{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
+.js .revela.visible{opacity:1;transform:none}
+.js .revela.d1{transition-delay:.1s}.js .revela.d2{transition-delay:.2s}.js .revela.d3{transition-delay:.3s}
+
+.chip{flex:none;border:1px solid var(--borde2);border-radius:999px;padding:7px 14px;font-size:14px;color:var(--suave);transition:transform .2s,border-color .2s,color .2s,background-color .2s}
+.chip:hover{transform:translateY(-3px) scale(1.06);border-color:var(--celeste);color:#fff;background:rgba(56,189,248,.12)}
+.boton{display:inline-block;text-decoration:none;font-weight:600;padding:15px 26px;border-radius:999px;transition:transform .2s ease-out}
+.boton.lleno{background:var(--celeste);color:var(--fondo)}.boton.lleno:hover{color:var(--fondo)}
+.boton.borde{border:1px solid var(--borde2);background:rgba(8,8,12,.6)}
+.lbl{margin:0 0 4px;font:500 13px 'Geist Mono',monospace;letter-spacing:.14em;color:var(--violeta)}
+video{display:block}
+
+@media (max-width:620px){.barra .contenedor{gap:16px}.nav{font-size:14px}.barra .marca{display:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .revela{opacity:1;transform:none;transition:none}.chip,.boton,.anillo,.nav:after{transition:none}}
+
+/* ---------- pulido fino ---------- */
+::selection{background:rgba(56,189,248,.35);color:#fff}
+html{scrollbar-color:#2A2A36 var(--fondo);scrollbar-width:thin}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-track{background:var(--fondo)}
+::-webkit-scrollbar-thumb{background:#2A2A36;border-radius:999px;border:2px solid var(--fondo)}::-webkit-scrollbar-thumb:hover{background:#3A3A48}
+
+/* botón del menú rápido en la barra */
+.atajo{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--borde2);background:rgba(17,17,24,.6);color:var(--suave);border-radius:10px;padding:6px 8px 6px 10px;font:500 13px Geist,system-ui,sans-serif;cursor:pointer;min-height:36px;transition:border-color .2s,color .2s}
+.atajo:hover{border-color:var(--celeste);color:var(--texto)}
+kbd{font:500 11px 'Geist Mono',monospace;border:1px solid var(--borde2);border-bottom-width:2px;border-radius:6px;padding:2px 6px;color:var(--suave2);background:var(--fondo)}
+
+/* menú rápido */
+.paleta-fondo{position:fixed;inset:0;z-index:90;background:rgba(4,4,8,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;justify-content:center;align-items:flex-start;padding:14vh 16px 16px;opacity:0;transition:opacity .16s}
+.paleta-fondo.ver{opacity:1}.paleta-fondo[hidden]{display:none}
+.paleta{width:min(560px,100%);background:#111118;border:1px solid var(--borde2);border-radius:16px;box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 40px rgba(56,189,248,.12);overflow:hidden;transform:translateY(-8px) scale(.98);transition:transform .16s}
+.paleta-fondo.ver .paleta{transform:none}
+.paleta-buscar{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--borde);color:var(--suave)}
+.paleta-buscar input{flex:1;min-width:0;background:none;border:0;outline:none;color:var(--texto);font:400 16px Geist,system-ui,sans-serif}
+.paleta-lista{list-style:none;margin:0;padding:8px;max-height:min(360px,55vh);overflow-y:auto}
+.paleta-lista li[role=option]{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:10px;cursor:pointer;color:var(--suave2);font-size:15px}
+.paleta-lista li.on{background:rgba(56,189,248,.14);color:var(--texto)}
+.paleta-lista li.on svg{color:var(--celeste)}
+.paleta-grupo{padding:10px 12px 4px;font:500 11px 'Geist Mono',monospace;letter-spacing:.12em;color:#6E6E82;text-transform:uppercase}
+.paleta-vacio{padding:18px 12px;color:var(--suave)}
+
+/* aviso corto («Copied!») */
+.aviso{position:fixed;left:50%;bottom:28px;z-index:95;transform:translate(-50%,12px);opacity:0;pointer-events:none;background:var(--celeste);color:var(--fondo);font-weight:600;padding:10px 18px;border-radius:999px;transition:opacity .2s,transform .2s;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.aviso.ver{opacity:1;transform:translate(-50%,0)}
+
+/* botón de copiar al lado del correo */
+.copiar{display:inline-grid;place-items:center;width:52px;height:52px;border-radius:999px;border:1px solid var(--borde2);background:rgba(8,8,12,.6);color:var(--suave2);cursor:pointer;transition:border-color .2s,color .2s,transform .2s}
+.copiar:hover{border-color:var(--celeste);color:var(--texto);transform:scale(1.06)}
+
+/* pie */
+.pie{position:relative;z-index:1;border-top:1px solid #1C1C26}
+.pie .contenedor{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;padding-top:26px;padding-bottom:30px;font-size:13px;color:var(--suave)}
+.pie a{color:var(--suave2)}.pie a:hover{color:var(--celeste)}
+.pie .vivo{display:inline-flex;align-items:center;gap:8px;font-family:'Geist Mono',monospace}
+.pie .vivo:before{content:'';width:7px;height:7px;border-radius:50%;background:#34D399;box-shadow:0 0 10px #34D399;animation:late 2s ease-in-out infinite}
+@keyframes late{50%{opacity:.35}}
+@media (max-width:620px){.atajo span{display:none}}
+@media (prefers-reduced-motion:reduce){.paleta-fondo,.paleta,.aviso{transition:none}.pie .vivo:before{animation:none}}
