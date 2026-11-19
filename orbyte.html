@@ -28,7 +28,7 @@ h1{margin:0;font-size:clamp(56px,9vw,112px);line-height:.95;font-weight:600;lett
 h1 em{font-family:'Instrument Serif',serif;font-weight:400;letter-spacing:-.01em;color:var(--celeste)}
 .bajada{margin:0;max-width:720px;font-size:21px;color:var(--suave2)}
 .video{border-radius:22px;overflow:hidden;border:1px solid var(--borde);box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 40px rgba(56,189,248,.12)}
-.video video{width:100%;height:auto;aspect-ratio:2/1;object-fit:cover}
+.video video,.video img{display:block;width:100%;height:auto;aspect-ratio:2/1;object-fit:cover}
 .datos{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;padding:40px 0 20px}
 .dato{border-top:1px solid var(--borde);padding-top:14px}
 .dato b{display:block;font-size:15px;font-weight:600}.dato span{color:var(--suave);font-size:15px}
@@ -69,6 +69,7 @@ h1 em{font-family:'Instrument Serif',serif;font-weight:400;letter-spacing:-.01em
     <a class="marca" href="./">Juan Jose Colmenares</a>
     <a class="nav" href="#why">Why</a>
     <a class="nav" href="#how">How it works</a>
+    <a class="nav" href="#new">What’s new</a>
     <a class="nav" href="#learned">What I learned</a>
   </div>
 </nav>
@@ -79,7 +80,7 @@ h1 em{font-family:'Instrument Serif',serif;font-weight:400;letter-spacing:-.01em
     <p class="lbl">CASE STUDY · PERSONAL PROJECT</p>
     <h1>Orbyte<em>.</em></h1>
     <p class="bajada">Orbyte AI is a personal AI assistant that lives on my own laptop. I say “Orbyte”, she listens, and she helps me organise my week, study maths and German, and control my PC — in Spanish, by voice.</p>
-    <div class="video revela"><video autoplay muted loop playsinline preload="metadata" poster="orbyte.jpg" aria-label="Orbyte AI assistant in action"><source src="orbyte.mp4" type="video/mp4"></video></div>
+    <div class="video revela"><img src="orbyte.webp" width="800" height="400" alt="Orbyte AI assistant in action: organizing the week, answering questions, teaching on a whiteboard, tracking money, watching the PC and remembering things"></div>
     <div class="datos revela d1">
       <div class="dato"><b>Role</b><span>Solo project — idea, design and code</span></div>
       <div class="dato"><b>Timeline</b><span>September 2026 — today</span></div>
@@ -91,8 +92,7 @@ h1 em{font-family:'Instrument Serif',serif;font-weight:400;letter-spacing:-.01em
   <section class="contenedor bloque" id="why">
     <h2 class="revela">Why I built it</h2>
     <div class="revela d1">
-      <p>I moved to Berlin to study Software Engineering, learn German, and take a maths course. My week was spread across calendars, notes, chats, and apps.</p>
-      <p>I wanted one assistant that knows my schedule and my courses, that I can simply talk to, and that I can finally build and understand myself, piece by piece.</p>
+      <p>I moved to Berlin to study Software Engineering. To organise my time and study as much as possible, I wanted an assistant that knows my schedule, my courses and how I like to study, so I could rely on her.</p>
     </div>
   </section>
 
@@ -115,6 +115,19 @@ h1 em{font-family:'Instrument Serif',serif;font-weight:400;letter-spacing:-.01em
       <li>Play music, open apps, set timers and control my PC by voice</li>
       <li>Search my notes and documents when I ask about a specific topic</li>
       <li>Talk to me on Telegram when I'm away from my laptop</li>
+    </ul>
+  </section>
+
+  <section class="contenedor bloque" id="new">
+    <h2 class="revela">What’s new<br><span style="color:var(--suave);font-size:.55em;font-weight:500">November 2026</span></h2>
+    <ul class="lista revela d1">
+      <li><span><b>Her own voice.</b> A text-to-speech model (Piper) I trained on my own GPU for about 1,300 epochs. It runs offline on the CPU.</span></li>
+      <li><span><b>A new face.</b> A black hole with gem-like eyes that changes expression while she talks, drawn with a WebGL shader. On the desktop she floats as a hologram, with a small “dynamic island” for alerts, music and timers.</span></li>
+      <li><span><b>Fast and cheap.</b> A rule-based voice layer answers most spoken requests in milliseconds, even without internet. Only the rest goes to Claude, picking Haiku, Sonnet or Opus by how hard the question is.</span></li>
+      <li><span><b>Live whiteboard.</b> She draws the explanation step by step, formulas included, while she talks.</span></li>
+      <li><span><b>Long-term memory.</b> She remembers people, preferences and shared moments.</span></li>
+      <li><span><b>One app everywhere.</b> The same app runs on my PC and on my phone.</span></li>
+      <li><span><b>Tested.</b> 600+ automated voice tests run in a sandbox (no internet, no real keys) before every commit.</span></li>
     </ul>
   </section>
 

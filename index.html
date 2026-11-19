@@ -59,7 +59,7 @@ h2{margin:0;font-size:48px;font-weight:600;letter-spacing:-.04em}
 .slide{position:absolute;left:50%;top:0;width:min(760px,86vw);background:var(--tarjeta);border:1px solid var(--borde);border-radius:24px;padding:18px;transition:transform .65s cubic-bezier(.2,.8,.2,1),opacity .65s,border-color .4s,box-shadow .4s}
 .slide.centro{border-color:rgba(56,189,248,.45);box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 40px rgba(56,189,248,.15)}
 .portada{aspect-ratio:2/1;border-radius:16px;overflow:hidden;display:grid;place-items:center}
-.portada video{width:100%;height:100%;object-fit:cover}
+.portada video,.portada img{width:100%;height:100%;object-fit:cover}
 .slide .info{padding:20px 8px 6px;display:flex;flex-direction:column;gap:8px}
 .etiqueta{margin:0;font:500 12px 'Geist Mono',monospace;letter-spacing:.14em;color:var(--celeste)}
 .slide h3{margin:0;font-size:28px;font-weight:600;letter-spacing:-.03em}
@@ -177,7 +177,7 @@ Colmenares</h1>
   </div>
   <div class="pista revela d1" id="pista">
     <article class="slide">
-      <div class="portada" style="background:#05030B"><video autoplay muted loop playsinline preload="metadata" poster="orbyte.jpg" aria-label="Orbyte AI assistant in action: listening, answering and showing the day"><source src="orbyte.mp4" type="video/mp4"></video></div>
+      <div class="portada" style="background:#05030B"><img src="orbyte.webp" width="800" height="400" loading="lazy" alt="Orbyte AI assistant in action: organizing the week, answering questions, teaching on a whiteboard and more"></div>
       <div class="info"><p class="etiqueta">FEATURED · 2026</p><h3>Orbyte</h3><p class="txt">My own AI, built in Python with the Claude API. It talks in Spanish by voice, helps me study maths, code, and German, remembers our conversations, and connects to my calendar, Gmail, Telegram, and WhatsApp — all running on my own PC.</p><a class="caso" href="orbyte.html">Read the case study →</a></div>
     </article>
     <article class="slide">
@@ -189,7 +189,7 @@ Colmenares</h1>
       <div class="info"><p class="etiqueta">2026 · LATEX</p><h3>CV — LaTeX</h3><p class="txt">Developed a professional curriculum vitae by writing LaTeX code.</p></div>
     </article>
     <article class="slide">
-      <div class="portada" style="background:#0B1626"><video autoplay muted loop playsinline preload="metadata" poster="web.jpg" aria-label="Scrolling through this portfolio website with the mouse"><source src="web.mp4" type="video/mp4"></video></div>
+      <div class="portada" style="background:#0B1626"><img src="web.webp" width="800" height="400" loading="lazy" alt="Scrolling through this portfolio website with the mouse"></div>
       <div class="info"><p class="etiqueta">2026 · WEBSITE</p><h3>Personal Portfolio Website</h3><p class="txt">Developed a personal website to showcase academic achievements, skills, and projects.</p><a class="caso" href="https://github.com/kolmme/kolmme.github.io" target="_blank" rel="noopener">View code →</a></div>
     </article>
     <article class="slide">
